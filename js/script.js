@@ -33,8 +33,9 @@ function doPrediction() {
 };
 
 async function predict(modelFolder) {
-  var model = await loadModel(modelFolder);
   var inputText = await getInputText();
+  setInputText('جاري التشكيل...');
+  var model = await loadModel(modelFolder);
   var outputPredicted = await predictOutput(inputText, model, modelFolder);
   setInputText(outputPredicted);
   model = null;
