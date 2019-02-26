@@ -1,12 +1,3 @@
-/* START: MAIN */
-
-$(document).ready(function() {
-  $('#diacritize-it').on("click", doPrediction);
-  loadMappings();
-});
-
-/* END: MAIN */
-
 /* START: GLOBAL */
 
 var ARABIC_LETTERS_LIST = null;
@@ -19,6 +10,16 @@ var CHARS_NUM = 50;
 var CLASSES_NUM = 15;
 
 /* END: GLOBAL */
+
+/* START: MAIN */
+
+$(document).ready(function() {
+  $('.progress .progress-bar').css("width", "0%");
+  $('#diacritize-it').on("click", doPrediction);
+  loadMappings();
+});
+
+/* END: MAIN */
 
 /* BEGIN: PREDICTION */
 
@@ -33,10 +34,12 @@ function doPrediction() {
 };
 
 async function predict(modelFolder) {
+  $('.progress .progress-bar').css("width", "0%");
   var inputText = await getInputText();
-  setInputText('جاري التشكيل...');
+  var arabicLettersCount = await countArabicLetters(inputText);
+  setInputText('جاري تشكيل ' + arabicLettersCount.toString() + ' من الحروف العربية...');
   var model = await loadModel(modelFolder);
-  var outputPredicted = await predictOutput(inputText, model, modelFolder);
+  var outputPredicted = await predictOutput(inputText, model, modelFolder, arabicLettersCount);
   setInputText(outputPredicted);
   model = null;
   inputText = null;
@@ -48,15 +51,16 @@ async function loadModel(modelName) {
   return model;
 };
 
-function predictOutput(inputText, model, modelFolder) {
+async function predictOutput(inputText, model, modelFolder, arabicLettersCount) {
   outputPredicted = '';
+  predictedCount = 0;
 
   for (var i = 0; i < inputText.length; ++i) {
     if (DIACRITICS_LIST.indexOf(inputText.charAt(i)) != -1) {
       continue;
     }
 
-    outputPredicted += inputText.charAt(i);
+    outputPredicted += await inputText.charAt(i);
 
     if (ARABIC_LETTERS_LIST.indexOf(inputText.charAt(i)) == -1) {
       continue;
@@ -125,8 +129,12 @@ function predictOutput(inputText, model, modelFolder) {
       prediction = model.predict(tf.tensor2d(x, [1, 2 * CHARS_NUM]));
     }
     max_prediction = tf.argMax(prediction, 1).dataSync();
-    
-    if (max_prediction == 0) {
+
+    predictedCount += 1;
+    $('.progress .progress-bar').css("width", Math.ceil(predictedCount / arabicLettersCount * 100).toString() + "%");
+    await sleep(0);
+
+    if (max_prediction[0] == 0) {
       continue;
     }
 
@@ -134,6 +142,16 @@ function predictOutput(inputText, model, modelFolder) {
   }
 
   return outputPredicted;
+};
+
+function countArabicLetters(inputText) {
+  var counter = 0;
+  for (var i = 0; i < inputText.length; ++i) {
+    if (ARABIC_LETTERS_LIST.indexOf(inputText.charAt(i)) != -1) {
+      counter += 1;
+    }
+  }
+  return counter;
 };
 
 /* END: PREDICTION */
@@ -193,6 +211,10 @@ function getInputText() {
 
 function setInputText(text) {
   $('#input').val(text);
-}
+};
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
 
 /* END: HELPERS */
