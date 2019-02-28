@@ -10,7 +10,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.rtl.css">
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -29,41 +28,43 @@
       <div class="row">
         <div class="col">
           <h1 class="text-center">شَكِّلْهَا</h1>
-          <p class="text-white">شَكِّلْهَا هو خدمة تُقدم المساعدة في تشكيل النصوص العربية لمساعدة الأشخاص غير المتمرسين في اللغة على نطق الكلمات والجمل بشكل صحيح وكذلك يمكن إستخدام هذه الخدمة لتشكيل النصوص في مجالات عديدة، على سبيل المثال لا الحصر: نشرات الأخبار، المقالات، الكتب... إلخ.</p>
+          <p class="text-white">Shakkelha provides the service of diacritizing Arabic text to help non-fluent Arabic speakers with pronounciation, and help authors in automatically diacritizing long texts such as newsletters, articles, books... etc.</p>
 
           <hr class="my-4 hr-white">
 
-          <h3 class="text-center">جرّب شَكِّلْهَا الأن!</h3>
-          <p class="text-white">يُمكنك إستخدام شَكِّلْهَا مجانًا لتشكيل النصوص بشكل سريع وفعّال، قم بإستخدام الأدوات في الأسفل لتشكيل النصوص العربية بضغطة زر.</p>
+          <h3 class="text-center">Try Shakkelha now!</h3>
+          <p class="text-white">You can now use the fast and east to use Shakkelha for free! Use the tool below to diacritize Arabic text with one click.</p>
 
-          <p class="text-white">1. قُم بإدخال النص الخاص بك:</p>
+          <p class="text-white">1. Enter your text:</p>
           <div class="form-group">
       		  <textarea id="input" class="form-control" rows="5"></textarea>
           </div>
 
-          <p class="text-white">2. قُم بإختيار النموذج الذي تريد التشكيل من خلاله:</p>
+          <p class="text-white">2. Choose the model you want to diacritize using it:</p>
           <div class="form-group">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="model-selection" id="basic-model" checked="checked">
-              <label class="text-white form-check-label" for="basic-model">Basic</label>
-            </div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="model-selection" id="embeddings-model" checked="checked">
+							<label class="text-white form-check-label" for="embeddings-model">Embeddings (Best Accuracy)</label>
+						</div>
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="model-selection" id="100-hot-model">
               <label class="ltr text-white form-check-label" for="100-hot-model">100-Hot</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="model-selection" id="embeddings-model">
-              <label class="text-white form-check-label" for="embeddings-model">Embeddings</label>
+              <input class="form-check-input" type="radio" name="model-selection" id="basic-model">
+              <label class="text-white form-check-label" for="basic-model">Basic</label>
             </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" id="diacritize-it" class="btn btn-lg btn-secondary btn-block">Shakkelha</button>
           </div>
 
 					<div class="progress mb-4" style="height: 20px;">
 					  <div class="progress-bar bg-dark progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
 
-          <div class="form-group">
-            <button type="submit" id="diacritize-it" class="btn btn-lg btn-secondary">شَكِّلْهَا</button>
-          </div>
+					<p style="direction: rtl;"><a class="text-dark" href="/index.ar.html">اضغط هنا للنسخة العربية</a></p>
         </div>
       </div>
     </div>

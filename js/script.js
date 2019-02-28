@@ -37,7 +37,12 @@ async function predict(modelFolder) {
   $('.progress .progress-bar').css("width", "0%");
   var inputText = await getInputText();
   var arabicLettersCount = await countArabicLetters(inputText);
-  setInputText('جاري تشكيل ' + arabicLettersCount.toString() + ' من الحروف العربية...');
+  if ($('#diacritize-it').text() === 'شَكِّلْهَا') {
+    setInputText('جاري تشكيل ' + arabicLettersCount.toString() + ' من الحروف العربية...');
+  } else {
+    setInputText('Diacritizing ' + arabicLettersCount.toString() + ' Arabic characters...');
+  }
+
   var model = await loadModel(modelFolder);
   var outputPredicted = await predictOutput(inputText, model, modelFolder, arabicLettersCount);
   setInputText(outputPredicted);
