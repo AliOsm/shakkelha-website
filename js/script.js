@@ -33,7 +33,7 @@ function doPrediction() {
   }
 };
 
-async function predict(modelFolder) {
+async function predict(modelType, modelName) {
   $('.progress .progress-bar').css("width", "0%");
   var inputText = await getInputText();
   var arabicLettersCount = await countArabicLetters(inputText);
@@ -43,7 +43,7 @@ async function predict(modelFolder) {
     setInputText('Diacritizing ' + arabicLettersCount.toString() + ' Arabic characters...');
   }
 
-  var model = await loadModel(modelFolder);
+  var model = await loadModel(modelType, modelName);
   var outputPredicted = await predictOutput(inputText, model, modelFolder, arabicLettersCount);
   setInputText(outputPredicted);
   model = null;
