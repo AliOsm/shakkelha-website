@@ -44,7 +44,7 @@ async function predict(modelType, modelName) {
   }
 
   var model = await loadModel(modelType, modelName);
-  var outputPredicted = await predictOutput(inputText, model, modelFolder, arabicLettersCount);
+  var outputPredicted = await predictOutput(inputText, model, modelName, arabicLettersCount);
   setInputText(outputPredicted);
   model = null;
   inputText = null;
@@ -56,7 +56,7 @@ async function loadModel(modelType, modelName) {
   return model;
 };
 
-async function predictOutput(inputText, model, modelFolder, arabicLettersCount) {
+async function predictOutput(inputText, model, modelName, arabicLettersCount) {
   outputPredicted = '';
   predictedCount = 0;
 
@@ -128,7 +128,7 @@ async function predictOutput(inputText, model, modelFolder, arabicLettersCount) 
     }
 
     // Predict
-    if (modelFolder === '100_hot_model') {
+    if (modelName === '100_hot_model') {
       prediction = model.predict(tf.reshape(tf.oneHot(x, Object.keys(CHARACTERS_MAPPING).length + 2).flatten(), [1, (Object.keys(CHARACTERS_MAPPING).length + 2) * 100]));
     } else {
       prediction = model.predict(tf.tensor2d(x, [1, 2 * CHARS_NUM]));
