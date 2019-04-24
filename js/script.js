@@ -25,11 +25,11 @@ $(document).ready(function() {
 
 function doPrediction() {
   if ($('#basic-model').is(':checked')) {
-    predict('basic_model');
+    predict('feed_forward_models', '1_basic_model');
   } else if($('#100-hot-model').is(':checked')) {
-    predict('100_hot_model');
+    predict('feed_forward_models', '2_100_hot_model');
   } else if($('#embeddings-model').is(':checked')) {
-    predict('embeddings_model');
+    predict('feed_forward_models', '3_embeddings_model');
   }
 };
 
@@ -51,8 +51,8 @@ async function predict(modelFolder) {
   outputPredicted = null;
 };
 
-async function loadModel(modelName) {
-  const model = await tf.loadModel('models/' + modelName + '/model.json');
+async function loadModel(modelType, modelName) {
+  const model = await tf.loadModel('models/' + modelType + '/' + modelName + '/model.json');
   return model;
 };
 
