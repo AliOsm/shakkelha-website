@@ -128,7 +128,7 @@ async function predictOutput(inputText, model, modelName, arabicLettersCount) {
     }
 
     // Predict
-    if (modelName === '100_hot_model') {
+    if (modelName === '2_100_hot_model') {
       prediction = model.predict(tf.reshape(tf.oneHot(x, Object.keys(CHARACTERS_MAPPING).length + 2).flatten(), [1, (Object.keys(CHARACTERS_MAPPING).length + 2) * 100]));
     } else {
       prediction = model.predict(tf.tensor2d(x, [1, 2 * CHARS_NUM]));
