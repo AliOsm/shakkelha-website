@@ -42,7 +42,7 @@ pbr==5.2.0
 protobuf==3.7.1
 PyArabic==0.6.5
 pycrypto==2.6.1
-pygobject==3.26.1
+pygobject==3.32.1
 python-dateutil==2.8.0
 python-slugify==3.0.2
 pyxdg==0.25
