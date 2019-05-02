@@ -11,6 +11,7 @@ var REV_CLASSES_MAPPING = null;
 
 $(document).ready(function() {
   loadConstants();
+  setInputText('', 'rtl');
   $('#diacritize-it').on("click", predict);
 });
 
@@ -21,18 +22,14 @@ $(document).ready(function() {
 function predict() {
   var inputText = getInputText();
   var arabicLettersCount = countArabicLetters(inputText);
-  if ($('#diacritize-it').text() === 'شَكِّلْهَا') {
-    setInputText('جاري تشكيل ' + arabicLettersCount.toString() + ' من الحروف العربية...');
-  } else {
-    setInputText('Diacritizing ' + arabicLettersCount.toString() + ' Arabic characters...');
-  }
+  setInputText('Diacritizing ' + arabicLettersCount.toString() + ' Arabic characters...', 'ltr');
 
   let message = {
     encoded: mapInput(inputText)
   }
 
   $.post("/predict", JSON.stringify(message), function(response) {
-    setInputText(buildPrediction(inputText, response.predictions));
+    setInputText(buildPrediction(inputText, response.predictions), 'rtl');
   });
 };
 
@@ -55,7 +52,6 @@ function mapInput(inputText) {
 };
 
 function buildPrediction(inputText, predictions) {
-  console.log(predictions);
   var output = ''
   var prediction = -1
 
@@ -136,7 +132,8 @@ function getInputText() {
   return $('#input').val();
 };
 
-function setInputText(text) {
+function setInputText(text, dir) {
+  $('#input').css({'direction': dir});
   $('#input').val(text);
 };
 
