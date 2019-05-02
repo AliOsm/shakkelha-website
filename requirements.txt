@@ -32,7 +32,6 @@ keyring==10.6.0
 keyrings.alt==3.0
 libqutrub==1.2.1
 lxml==4.3.3
-madamira-diac==0.1.0
 Markdown==3.1
 MarkupSafe==1.1.1
 mock==2.0.0
