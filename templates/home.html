@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shakkelha</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.rtl.css"> -->
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+
+    <!-- Popper -->
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    {{ JSGlue.include() }}
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <img class="img-fluid" src="{{ url_for('static', filename='images/logo.png') }}">
+          </div>
+          <p class="text-white">Shakkelha provides the service of diacritizing Arabic text to help non-fluent Arabic speakers with pronounciation, and help authors in automatically diacritizing long texts such as newsletters, articles, books... etc.</p>
+
+          <hr class="my-4 hr-white">
+
+          <h3 class="text-center">Try Shakkelha now!</h3>
+          <p class="text-white">You can now use the fast and easy to use Shakkelha for free! Use the tool below to diacritize Arabic text with one click.</p>
+
+          <p class="text-white">Enter your text:</p>
+          <div class="form-group">
+            <textarea id="input" class="form-control" rows="5" style="direction: rtl;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" id="diacritize-it" class="btn btn-lg btn-secondary btn-block">Shakkelha</button>
+            <div class="mobile-only text-danger mt-2">
+              Warning: The system might be slow when running on a mobile.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main JS Script -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
