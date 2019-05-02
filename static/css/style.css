@@ -21,18 +21,3 @@ p, label, #diacritize-it {
 .hr-white {
   border-color: white;
 }
-
-.ltr {
-  direction: ltr;
-}
-
-.mobile-only {
-  display: none;
-}
-
-/* Smartphone Portrait and Landscape */
-@media only screen and (max-width: 768px) {
-  .mobile-only {
-    display: inline;
-  }
-}
