@@ -39,6 +39,9 @@ def predict():
 
 	with graph.as_default():
 		predictions = list(np.argmax(model.predict(np.array([encoded])).squeeze()[1:-1], axis=-1))
+	predictions = [int(prediction) for prediction in predictions]
+
+	print(type(predictions[0]))
 
 	response = {
 		'predictions': predictions
