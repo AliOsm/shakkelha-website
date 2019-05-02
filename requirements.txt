@@ -14,7 +14,7 @@ enum34==1.1.6
 Flask==1.0.2
 Flask-JSGlue==0.3.1
 funcsigs==1.0.2
-futures==3.2.0
+futures==3.1.1
 gast==0.2.2
 grpcio==1.20.1
 gunicorn==19.9.0
