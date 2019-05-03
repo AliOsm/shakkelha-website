@@ -29,29 +29,37 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="text-center">
-            <img class="img-fluid" src="{{ url_for('static', filename='images/logo.png') }}">
-          </div>
-          <p class="text-white">Shakkelha provides the service of diacritizing Arabic text to help non-fluent Arabic speakers with pronounciation, and help authors in automatically diacritizing long texts such as newsletters, articles, books... etc.</p>
+        	<div class="card mb-4">
+        		<div class="card-body">
+		          <div class="row justify-content-center">
+		          	<div class="col-6">
+		            	<img class="img-fluid" src="{{ url_for('static', filename='images/logo.png') }}">
+		            </div>
+		          </div>
+          		<p class="text-white mb-0">Shakkelha provides the service of diacritizing Arabic text to help non-fluent Arabic speakers with pronounciation, and help authors in automatically diacritizing long texts such as newsletters, articles, books... etc.</p>
+        		</div>
+        	</div>
 
-          <hr class="my-4 hr-white">
+        	<div class="card">
+        		<div class="card-body">
+		          <h3 class="text-white text-center">Try Shakkelha now!</h3>
+		          <p class="text-white">You can now use the fast and easy to use Shakkelha for free! Use the tool below to diacritize Arabic text with one click.</p>
 
-          <h3 class="text-center">Try Shakkelha now!</h3>
-          <p class="text-white">You can now use the fast and easy to use Shakkelha for free! Use the tool below to diacritize Arabic text with one click.</p>
+		          <p class="text-white">Enter your text:</p>
+		          <div class="form-group">
+		            <div class="input-group">
+								  <div class="input-group-prepend">
+								    <button id="remove-diacritics" class="btn-secondary btn input-group-text">Remove<br>Diacritics</button>
+								  </div>
+								  <textarea id="input" class="form-control" rows="5" aria-label="With textarea"></textarea>
+								</div>
+		          </div>
 
-          <p class="text-white">Enter your text:</p>
-          <div class="form-group">
-            <div class="input-group">
-						  <div class="input-group-prepend">
-						    <button id="remove-diacritics" class="input-group-text">Remove<br>Diacritics</button>
-						  </div>
-						  <textarea id="input" class="form-control" rows="5" aria-label="With textarea"></textarea>
-						</div>
-          </div>
-
-          <div class="form-group">
-            <button type="submit" id="diacritize-it" class="btn btn-lg btn-secondary btn-block">Shakkelha</button>
-          </div>
+		          <div class="form-group mb-0">
+		            <button type="submit" id="diacritize-it" class="btn btn-lg btn-secondary btn-block">Shakkelha</button>
+		          </div>
+		        </div>
+		      </div>
         </div>
       </div>
     </div>

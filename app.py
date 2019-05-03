@@ -37,6 +37,10 @@ setup_model()
 def home():
 	return render_template('home.html')
 
+@app.route('/bucktrans')
+def bucktrans():
+	return render_template('bucktrans.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
 	global model

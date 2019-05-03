@@ -10,7 +10,7 @@ p {
   text-align: justify;
 }
 
-p, label, #diacritize-it {
+p, label, #diacritize-it, #tranliterate-it {
   font-size: 24px;
 }
 
