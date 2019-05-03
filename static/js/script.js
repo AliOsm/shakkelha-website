@@ -4,6 +4,7 @@ var ARABIC_LETTERS_LIST = null;
 var DIACRITICS_LIST = null;
 var CHARACTERS_MAPPING = null;
 var REV_CLASSES_MAPPING = null;
+var SENTENCES = null;
 
 /* END: GLOBAL */
 
@@ -11,8 +12,8 @@ var REV_CLASSES_MAPPING = null;
 
 $(document).ready(function() {
   loadConstants();
-  setInputText('', 'rtl');
-  $('#diacritize-it').on("click", predict);
+  $('#diacritize-it').on('click', predict);
+  $('#remove-diacritics').on('click', removeDiacritics);
 });
 
 /* END: MAIN */
@@ -28,7 +29,7 @@ function predict() {
     encoded: mapInput(inputText)
   }
 
-  $.post("/predict", JSON.stringify(message), function(response) {
+  $.post('/predict', JSON.stringify(message), function(response) {
     setInputText(buildPrediction(inputText, response.predictions), 'rtl');
   });
 };
@@ -100,6 +101,10 @@ function loadConstants() {
   get(Flask.url_for('static', {'filename': 'json/REV_CLASSES_MAPPING.json'})).then(function(response) {
     REV_CLASSES_MAPPING = JSON.parse(response);
   });
+  get(Flask.url_for('static', {'filename': 'json/SENTENCES.json'})).then(function(response) {
+    SENTENCES = JSON.parse(response);
+  	setInputText(SENTENCES[Math.floor(Math.random() * (SENTENCES.length - 1))], 'rtl');
+  });
 };
 
 function get(filePath) {
@@ -133,8 +138,22 @@ function getInputText() {
 };
 
 function setInputText(text, dir) {
-  $('#input').css({'direction': dir});
-  $('#input').val(text);
+  $('#input').css({'direction': dir}).val(text);
+};
+
+function removeDiacritics() {
+  var inputText = getInputText();
+  var cleanedInputText = '';
+
+  for (var i = 0; i < inputText.length; ++i) {
+    if (DIACRITICS_LIST.indexOf(inputText.charAt(i)) != -1) {
+      continue;
+    }
+
+    cleanedInputText += inputText.charAt(i);
+  }
+
+  setInputText(cleanedInputText);
 };
 
 /* END: HELPERS */
