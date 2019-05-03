@@ -2,7 +2,7 @@
   <img height="250px" src="static/images/logo-dark.png">
 </p>
 
-# shakkelha-website
+# Shakkelha Website
 
 A web service that provides an accessible interface to interact with the best model from [shakkelha](https://github.com/AliOsm/shakkelha)
 
