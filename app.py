@@ -5,6 +5,7 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import render_template
+from flask import redirect
 from flask_jsglue import JSGlue
 
 from keras.models import load_model
@@ -40,6 +41,10 @@ def home():
 @app.route('/buckwalter_transliterator')
 def buckwalter_transliterator():
 	return render_template('buckwalter_transliterator.html')
+
+@app.route('/index.ar.html')
+def index_ar_html():
+	return redirect('/')
 
 @app.route('/predict', methods=['POST'])
 def predict():
