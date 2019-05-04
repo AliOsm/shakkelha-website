@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Amiri|Cairo');
 
+* {
+  outline: none !important;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  padding-top: 70px;
-  padding-bottom: 70px;
+	display: flex;
+  flex-direction: column;
+  padding-top: 80px;
   font-family: 'Cairo', sans-serif !important;
 }
 
@@ -18,6 +27,14 @@ p, label, #diacritize-it, #tranliterate-it {
   font-size: 18px;
 }
 
-.hr-white {
-  border-color: white;
+#content {
+  flex: 1 0 auto;
+}
+
+#footer {
+  flex: 0 0 auto;
+  background-color: #222222;
+  padding: 10px 0px 10px 0px;
+  color: #FFFFFF;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.3);
 }

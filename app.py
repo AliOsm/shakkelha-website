@@ -37,9 +37,9 @@ setup_model()
 def home():
 	return render_template('home.html')
 
-@app.route('/bucktrans')
-def bucktrans():
-	return render_template('bucktrans.html')
+@app.route('/buckwalter_transliterator')
+def buckwalter_transliterator():
+	return render_template('buckwalter_transliterator.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
