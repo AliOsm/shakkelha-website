@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amiri|Cairo');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
   outline: none !important;
@@ -11,8 +11,8 @@ html, body {
 body {
 	display: flex;
   flex-direction: column;
-  padding-top: 80px;
-  font-family: 'Cairo', sans-serif !important;
+  padding-top: 100px;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 p {
@@ -24,7 +24,7 @@ p, label, #diacritize-it, #tranliterate-it {
 }
 
 #input {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 #content {
