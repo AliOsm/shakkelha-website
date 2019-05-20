@@ -11,6 +11,8 @@ from flask_jsglue import JSGlue
 from keras.models import load_model
 from optimizer import NormalizedOptimizer
 
+from helpers import split_list
+
 app = Flask(__name__)
 jsglue = JSGlue(app)
 
@@ -25,11 +27,11 @@ jsglue = JSGlue(app)
 def setup_model():
 	print(' * Loading Keras model...')
 
-	global model
 	global graph
+	global model
 
-	model = load_model('static/model/model.ckpt', custom_objects={'NormalizedOptimizer': NormalizedOptimizer})
 	graph = tf.get_default_graph()
+	model = load_model('static/model/model.ckpt', custom_objects={'NormalizedOptimizer': NormalizedOptimizer})
 
 	print(' * Model loaded!')
 setup_model()
@@ -48,18 +50,36 @@ def index_ar_html():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-	global model
 	global graph
+	global model
 
 	message = request.get_json(force=True)
 	encoded = message['encoded']
 
-	with graph.as_default():
-		predictions = list(np.argmax(model.predict(np.array([encoded])).squeeze()[1:-1], axis=-1))
-	predictions = [int(prediction) for prediction in predictions]
+	if len(encoded) > 5000:
+		response = {
+			'predictions': [-1]
+		}
 
-	response = {
-		'predictions': predictions
-	}
+		return jsonify(response)
+	else:
+		newline_id = 4
+		encoded = list(split_list(encoded, newline_id))
 
-	return jsonify(response)
+		predictions = []
+		with graph.as_default():
+			for e in encoded:
+				if predictions != []:
+					predictions.append(0)
+
+				if len(e) == 2:
+					continue
+
+				predictions.extend(list(np.argmax(model.predict(np.array([e])).squeeze()[1:-1], axis=-1)))
+		predictions = [int(prediction) for prediction in predictions]
+
+		response = {
+			'predictions': predictions
+		}
+
+		return jsonify(response)

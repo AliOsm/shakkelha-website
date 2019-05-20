@@ -22,6 +22,12 @@ $(document).ready(function() {
 
 function predict() {
   var inputText = getInputText();
+
+  if (inputText.length > 5000) {
+    alert('You cannot diacritize Arabic text containing more than 5000 characters!');
+    return;
+  }
+
   var arabicLettersCount = countArabicLetters(inputText);
   setInputText('Diacritizing ' + arabicLettersCount.toString() + ' Arabic characters...', 'ltr');
 
@@ -41,10 +47,18 @@ function mapInput(inputText) {
       continue;
     }
 
+    if (inputText.charAt(i) == '\n') {
+      mappedInput.push(CHARACTERS_MAPPING['<EOS>']);
+    }
+
     if (CHARACTERS_MAPPING.hasOwnProperty(inputText.charAt(i)) == true) {
       mappedInput.push(CHARACTERS_MAPPING[inputText.charAt(i)]);
     } else {
       mappedInput.push(CHARACTERS_MAPPING['<UNK>']);
+    }
+    
+    if (inputText.charAt(i) == '\n') {
+      mappedInput.push(CHARACTERS_MAPPING['<SOS>']);
     }
   }
   mappedInput.push(CHARACTERS_MAPPING['<EOS>']);
@@ -53,6 +67,11 @@ function mapInput(inputText) {
 };
 
 function buildPrediction(inputText, predictions) {
+  if (predictions[0] == -1) {
+    alert('You cannot diacritize Arabic text containing more than 5000 characters!');
+    return inputText;
+  }
+
   var output = ''
   var prediction = -1
 
