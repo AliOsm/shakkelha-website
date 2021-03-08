@@ -77,6 +77,18 @@ function buildPrediction(inputText, predictions) {
 
   for (var i = 0; i < inputText.length; ++i) {
     if (DIACRITICS_LIST.indexOf(inputText.charAt(i)) != -1) {
+      var j = output.length - 1;
+      while (DIACRITICS_LIST.indexOf(output.charAt(j)) != -1) {
+        --j;
+      }
+      output = output.slice(0, ++j);
+
+      while (DIACRITICS_LIST.indexOf(inputText.charAt(i)) != -1) {
+        output += inputText.charAt(i);
+        ++i;
+      }
+      --i;
+
       continue;
     }
 

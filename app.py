@@ -13,16 +13,19 @@ from optimizer import NormalizedOptimizer
 
 from helpers import split_list
 
+
 app = Flask(__name__)
 jsglue = JSGlue(app)
+
 
 # Destroy cache for development mode
 # @app.after_request
 # def add_header(response):
-#   response.cache_control.max_age = 0
-#   if 'Cache-Control' not in response.headers:
-#     response.headers['Cache-Control'] = 'no-store'
-#   return response
+# 	response.cache_control.max_age = 0
+# 	if 'Cache-Control' not in response.headers:
+# 		response.headers['Cache-Control'] = 'no-store'
+# 	return response
+
 
 def setup_model():
 	print(' * Loading Keras model...')
@@ -36,17 +39,21 @@ def setup_model():
 	print(' * Model loaded!')
 setup_model()
 
+
 @app.route('/')
 def home():
 	return render_template('home.html')
+
 
 @app.route('/buckwalter_transliterator')
 def buckwalter_transliterator():
 	return render_template('buckwalter_transliterator.html')
 
+
 @app.route('/index.ar.html')
 def index_ar_html():
 	return redirect('/')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
