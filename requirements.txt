@@ -1,6 +1,6 @@
 tensorflow==1.15.5
 Keras==2.2.4
-numpy==1.16.3
+numpy==1.22.0
 Flask==1.0.2
 Flask-JSGlue==0.3.1
 gunicorn==19.9.0
