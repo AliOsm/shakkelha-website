@@ -1,7 +1,8 @@
 tensorflow==1.15.5
 Keras==2.2.4
 numpy==1.16.3
-Flask==2.0.3
+Flask==1.0.2
 Flask-JSGlue==0.3.1
 gunicorn==19.9.0
 protobuf==3.20
+Jinja2==2.11.0
