@@ -1,6 +1,8 @@
 import numpy as np
 import tensorflow.compat.v1 as tf
+
 tf.disable_v2_behavior()
+tf.compat.v1.enable_eager_execution()
 
 from flask import Flask
 from flask import request
