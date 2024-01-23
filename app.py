@@ -1,5 +1,6 @@
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from flask import Flask
 from flask import request
@@ -33,7 +34,7 @@ def setup_model():
 	global graph
 	global model
 
-	graph = tf.compat.v1.get_default_graph()
+	graph = tf.get_default_graph()
 	model = load_model('static/model/model.ckpt', custom_objects={'NormalizedOptimizer': NormalizedOptimizer})
 
 	print(' * Model loaded!')
