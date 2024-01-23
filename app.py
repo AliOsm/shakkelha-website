@@ -9,7 +9,7 @@ from flask import render_template
 from flask import redirect
 from flask_jsglue import JSGlue
 
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from optimizer import NormalizedOptimizer
 
 from helpers import split_list
