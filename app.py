@@ -77,15 +77,14 @@ def predict():
 		encoded = list(split_list(encoded, newline_id))
 
 		predictions = []
-		with graph.as_default():
-			for e in encoded:
-				if predictions != []:
-					predictions.append(0)
+		for e in encoded:
+			if predictions != []:
+				predictions.append(0)
 
-				if len(e) == 2:
-					continue
+			if len(e) == 2:
+				continue
 
-				predictions.extend(list(np.argmax(model.predict(np.array([e])).squeeze()[1:-1], axis=-1)))
+			predictions.extend(list(np.argmax(model.predict(np.array([e])).squeeze()[1:-1], axis=-1)))
 		predictions = [int(prediction) for prediction in predictions]
 
 		response = {
