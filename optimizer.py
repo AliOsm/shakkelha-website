@@ -2,10 +2,10 @@
 
 from __future__ import division
 
-from keras import optimizers
-from keras.legacy import interfaces
-from keras.utils.generic_utils import get_custom_objects
-from keras import backend as K
+from tensorflow.keras import optimizers
+from tensorflow.keras.legacy import interfaces
+from tensorflow.keras.utils.generic_utils import get_custom_objects
+from tensorflow.keras import backend as K
 
 
 def max_norm(grad):
