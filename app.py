@@ -33,7 +33,7 @@ def setup_model():
 	global graph
 	global model
 
-	graph = tf.get_default_graph()
+	graph = tf.compat.v1.get_default_graph()
 	model = load_model('static/model/model.ckpt', custom_objects={'NormalizedOptimizer': NormalizedOptimizer})
 
 	print(' * Model loaded!')
